@@ -14,13 +14,15 @@ CREATE TABLE Nacao(
     Nome varchar2(60) NOT NULL,
     Continente varchar2(7) NOT NULL,
         CHECK (Continente in ('America', 'Asia', 'Europa', 'Africa', 'Oceania')),
-    ImagemDaBandeira blob NOT NULL DEFAULT EMPTY_BLOB(),
-    HinoNacional blob NOT NULL DEFAULT EMPTY_BLOB(),
+    ImagemDaBandeira blob DEFAULT EMPTY_BLOB(),
+    HinoNacional blob DEFAULT EMPTY_BLOB(),
     Modalidade integer NOT NULL,
 
     PRIMARY KEY (Nome),
     FOREIGN KEY (Modalidade) REFERENCES ModalidadeEsportiva(ID)
 );
+
+
 -- Atleta(\underline{Passaporte}, Nome, Sexo, Altura, Peso, Dia, Mes, Ano, Nacao)
 CREATE TABLE Atleta(
     Passaporte integer NOT NULL,
@@ -136,7 +138,7 @@ CREATE TABLE AtletaMedicoAtende(
 CREATE TABLE Consulta(
     Medico integer NOT NULL,
     Atleta integer NOT NULL,
-    DataHora datetime NOT NULL,
+    DataHora Date NOT NULL,
     ID integer NOT NULL,
         CHECK (ID > 0),
         
@@ -150,7 +152,7 @@ CREATE TABLE ConsultaDoenca(
     Doenca varchar2(5) NOT NULL,
     Medico integer NOT NULL,
     Atleta integer NOT NULL,
-    DataHora datetime NOT NULL,
+    DataHora Date NOT NULL,
     
     PRIMARY KEY (Doenca, Medico, Atleta, DataHora),
     FOREIGN KEY (Doenca) REFERENCES Doenca(CID),
@@ -163,7 +165,7 @@ CREATE TABLE Diagnostico(
     Doenca varchar2(5) NOT NULL,
     Medico integer NOT NULL,
     Atleta integer NOT NULL,
-    DataHora datetime NOT NULL,
+    DataHora Date NOT NULL,
     Descricao varchar2(1000),
     ID integer NOT NULL,
         CHECK (ID > 0),
@@ -187,7 +189,7 @@ CREATE TABLE AtletaMedicoOcorrencia(
 CREATE TABLE TipoOcorrenciaOlimpica(
     Atleta integer NOT NULL,
     Medico integer NOT NULL,
-    DataHora datetime NOT NULL,
+    DataHora Date NOT NULL,
     ID integer NOT NULL,
         CHECK (ID > 0),
     Tipo varchar2(15) NOT NULL,
@@ -202,7 +204,7 @@ CREATE TABLE TipoOcorrenciaOlimpica(
 CREATE TABLE ExameDeDoping(
     Atleta integer NOT NULL,
     Medico integer NOT NULL,
-    DataHora datetime NOT NULL,
+    DataHora Date NOT NULL,
     DesricaoDosResultados varchar2(1000) NOT NULL,
     
     PRIMARY KEY (Atleta, Medico, DataHora),
@@ -213,14 +215,14 @@ CREATE TABLE ExameDeDoping(
 CREATE TABLE TesteDeDoping(
     Atleta integer NOT NULL,
     Medico integer NOT NULL,
-    DataHora datetime NOT NULL,
+    DataHora Date NOT NULL,
     ID integer NOT NULL,
         CHECK (ID > 0),
     Modalidade integer NOT NULL,
     
     PRIMARY KEY (Atleta, Medico, DataHora),
     FOREIGN KEY (Atleta, Medico, DataHora) REFERENCES ExameDeDoping(Atleta, Medico, DataHora),
-    FOREIGN KEY (Modalidade) REFERENCES ModalidadeEsportiva(ID),
+    FOREIGN KEY (Modalidade) REFERENCES ModalidadeEsportiva(ID)
 );
 
 -- MétodoDeTratamento(\underline{Doenca}, \underline{Médico}, \underline{Atleta}, \underline{Hora}, \underline{Dia}, \underline{Mes}, \underline{Ano}, \underline{ID}, Descricao do Método, Descricao da Efetividade)
@@ -228,7 +230,7 @@ CREATE TABLE MetodoDeTratamento(
     Doenca varchar2(5) NOT NULL,
     Medico integer NOT NULL,
     Atleta integer NOT NULL,
-    DataHora datetime NOT NULL,
+    DataHora Date NOT NULL,
     ID integer NOT NULL,
         CHECK (ID > 0),
     DescricaoDoMetodo varchar2(1000),
@@ -241,7 +243,7 @@ CREATE TABLE MetodoDeTratamento(
 CREATE TABLE Lesao(
     Atleta integer NOT NULL,
     Medico integer NOT NULL,
-    DataHora datetime NOT NULL,
+    DataHora Date NOT NULL,
     Descricao varchar2(1000),
     
     PRIMARY KEY (Medico, Atleta, DataHora),
@@ -369,7 +371,7 @@ CREATE TABLE EnderecoMedico(
 CREATE TABLE Sintoma(
     Medico integer NOT NULL,
     Atleta integer NOT NULL,
-    DataHora datetime NOT NULL,
+    DataHora Date NOT NULL,
     Sintoma varchar2(1000) NOT NULL,
     
     PRIMARY KEY (Medico, Atleta, DataHora),
