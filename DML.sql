@@ -70,8 +70,8 @@ INSERT INTO AtletaMedicoOcorrencia VALUES (2, 2);
 INSERT INTO AtletaMedicoOcorrencia VALUES (3, 3);
 
 INSERT INTO TipoOcorrenciaOlimpica VALUES (1, 1, TO_DATE('2017/06/06 8:00:00', 'yyyy/mm/dd hh24:mi:ss'), 1, 'Lesao');
-INSERT INTO TipoOcorrenciaOlimpica VALUES (2, 2, TO_DATE('2017/06/06 8:00:00', 'yyyy/mm/dd hh24:mi:ss'), 1, 'Exame de Doping');
-INSERT INTO TipoOcorrenciaOlimpica VALUES (3, 3, TO_DATE('2017/06/06 8:00:00', 'yyyy/mm/dd hh24:mi:ss'), 1, 'Lesao');
+INSERT INTO TipoOcorrenciaOlimpica VALUES (2, 2, TO_DATE('2017/06/06 8:00:00', 'yyyy/mm/dd hh24:mi:ss'), 2, 'Exame de Doping');
+INSERT INTO TipoOcorrenciaOlimpica VALUES (3, 3, TO_DATE('2017/06/06 8:00:00', 'yyyy/mm/dd hh24:mi:ss'), 3, 'Lesao');
 
 INSERT INTO ExameDeDoping VALUES (2, 2, TO_DATE('2017/06/06 8:00:00', 'yyyy/mm/dd hh24:mi:ss'), 'O Exame resultou em positivo.');
 
@@ -108,9 +108,9 @@ INSERT INTO RotinaAtleta VALUES (1, 1);
 INSERT INTO RotinaAtleta VALUES (2, 2);
 INSERT INTO RotinaAtleta VALUES (3, 3);
 
-INSERT INTO RotinaAtleta VALUES (1, 1);
-INSERT INTO RotinaAtleta VALUES (2, 2);
-INSERT INTO RotinaAtleta VALUES (3, 3);
+--INSERT INTO RotinaAtleta VALUES (1, 1);
+--INSERT INTO RotinaAtleta VALUES (2, 2);
+--INSERT INTO RotinaAtleta VALUES (3, 3);
 
 INSERT INTO PreparadorRotina VALUES (1, 1);
 INSERT INTO PreparadorRotina VALUES (2, 2);

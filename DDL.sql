@@ -184,16 +184,15 @@ CREATE TABLE AtletaMedicoOcorrencia(
     FOREIGN KEY (Atleta) REFERENCES Atleta(Passaporte),
     FOREIGN KEY (Medico) REFERENCES Medico(ID)
 );
-
 -- TipoOcorrenciaOlímpica(\underline{Atleta}, \underline{Médico}, \underline{Hora}, \underline{Dia}, \underline{Mes}, \underline{Ano}, \underline{\underline{ID}}, Tipo)
 CREATE TABLE TipoOcorrenciaOlimpica(
     Atleta integer NOT NULL,
     Medico integer NOT NULL,
     DataHora Date NOT NULL,
     ID integer NOT NULL,
-        CHECK (ID > 0),
+        CONSTRAINT B CHECK (ID > 0),
     Tipo varchar2(15) NOT NULL,
-        CHECK (Tipo in ('Lesao', 'Exame de Doping')),
+        CONSTRAINT C CHECK (Tipo in ('Lesao', 'Exame de Doping')),
     
     PRIMARY KEY (Atleta, Medico, DataHora),
     FOREIGN KEY (Atleta, Medico) REFERENCES AtletaMedicoOcorrencia(Atleta, Medico),
@@ -261,7 +260,7 @@ CREATE TABLE ModalidadeAtleta(
     
 );
 -- PreparadorAtleta(\underline{Preparador}, \underline{Atleta})
-CREATE TABLE PreparadorAtelta(
+CREATE TABLE PreparadorAtleta(
     Preparador integer NOT NULL,
     Atleta integer NOT NULL,
     
