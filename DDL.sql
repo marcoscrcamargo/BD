@@ -1,3 +1,6 @@
+-- ALTER DATE MODE
+alter session set nls_date_format = 'dd/MON/yyyy hh24:mi:ss';
+
 -- ModalidadeEsportiva(\underline{ID}, \underline{\underline{Nome}}, Descricao)
 CREATE TABLE ModalidadeEsportiva(
     ID integer NOT NULL,
@@ -21,7 +24,6 @@ CREATE TABLE Nacao(
     PRIMARY KEY (Nome),
     FOREIGN KEY (Modalidade) REFERENCES ModalidadeEsportiva(ID)
 );
-
 
 -- Atleta(\underline{Passaporte}, Nome, Sexo, Altura, Peso, Dia, Mes, Ano, Nacao)
 CREATE TABLE Atleta(
@@ -219,7 +221,7 @@ CREATE TABLE TesteDeDoping(
         CHECK (ID > 0),
     Modalidade integer NOT NULL,
     
-    PRIMARY KEY (Atleta, Medico, DataHora),
+    PRIMARY KEY (Atleta, Medico, DataHora, ID),
     FOREIGN KEY (Atleta, Medico, DataHora) REFERENCES ExameDeDoping(Atleta, Medico, DataHora),
     FOREIGN KEY (Modalidade) REFERENCES ModalidadeEsportiva(ID)
 );
@@ -375,5 +377,4 @@ CREATE TABLE Sintoma(
     
     PRIMARY KEY (Medico, Atleta, DataHora),
     FOREIGN KEY (Medico, Atleta, DataHora) REFERENCES Consulta(Medico, Atleta, DataHora)
-
 );
